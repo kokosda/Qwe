@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/app/home/index")    
+}
+
+<div class="jumbotron">
+    <h1>Qwe</h1>
+    <p class="lead">Qwe is a simple cell based game. Player should try to engage free cells while other players trying to do the same.</p>
+    <p><a href="@Url.Action("About")" class="btn btn-primary btn-lg">Read &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Let's play</h2>
+        <p>Type in your nickname and total number of players.</p>
+        <form data-bind="with: formDataModel">
+            <div class="form-group">
+                <label for="inputNickname">Nickname</label>
+                <input type="text" class="form-control" id="inputNickname" data-bind="event: { keyup: onNicknameKeyup }, visible: inputsAreVisible" />
+                <span data-bind="text: nickname, visible: spansAreVisible" style="display:none;"></span>
+            </div>
+            <div class="form-group">
+                <label for="inputPlayersCount">Players Count</label>
+                <select class="form-control" id="inputPlayersCount" 
+                        data-bind="options: availablePlayersCount,
+                                   value: playersCount,
+                                   event: { change: onPlayersCountChanged },
+                                   visible: inputsAreVisible">
+                </select>
+                <span data-bind="text: playersCount, visible: spansAreVisible" style="display:none;"></span>
+            </div>
+        </form>
+        <p data-bind="with: playButtonBlockModel">
+            <button class="btn btn-success" data-bind="disable: isPlayDisabled, click: onPlayClicked, visible: isPlayVisible">Play!</button>
+            <button class="btn btn-danger" data-bind="click: onStopClicked, visible: isStopVisible" style="display:none;">Stop</button>
+        </p>
+        <div data-bind="with: messageBlockModel">
+            <div class="alert alert-danger" data-bind="visible: isVisible" style="display:none;">
+                <p data-bind="text: message"></p>
+            </div>
+        </div>
+        <div id="cell_container" data-bind="with: cellContainerModel">
+            <div id="cell_list" data-bind="with:listModel">
+                <div data-bind="foreach: getCells()">
+                    <div data-bind="event: { click: onClicked }, css: cssClass">
+                        <div data-bind="text: text"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="engage_block" data-bind="with: engageButtonBlockModel">
+                <button class="btn btn-block btn-info" data-bind="disable: isDisabled, event: { click: onClicked }">Engage</button>
+            </div>
+            <div id="score_board" data-bind="with: scoreBoardModel">
+                <table class="table table-condensed table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nickname</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: dataList">
+                        <tr data-bind="css: rowCssClass">
+                            <td data-bind="text: nickname"></td>
+                            <td data-bind="text: score"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Maximum score is <span data-bind="text: maxScore"></span></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#cell_container {
+    margin: 0 auto;
+    width: 360px;
+}
+
+#cell_list {
+    border: solid 3px #0acadf;
+    padding: 0px;
+    line-height: 0px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f3a9fc;
+    display: inline-block;
+    margin-left: 11px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+}
+
+.cell:hover {
+    background-color: #e65ef7;
+    cursor: pointer;
+    transition: background-color linear 0.4s;
+}
+
+.cell.cell_selected {
+    background-color: #e65ef7;
+}
+
+.cell.cell_engaged {
+    background-color: #5bc0de;
+}
+
+.cell.cell_engaged:hover {
+    background-color: #3ea8c7;
+    transition: background-color linear 0.4s;
+}
+
+.cell div {
+    display: table-cell;
+    margin: 0 auto;
+    width: 80px;
+    padding-top: 45px;
+    padding-left: 30px;
+    color: #ffffff;
+}
+
+#engage_block {
+    margin-top: 10px;
+}
+
+.winner > td {
+    background-color: #96ed49 !important;
+}
